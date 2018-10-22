@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class HTTPError extends Error {
+    constructor(req, ...params) {
+        super(...params);
+        this.res = req;
+        this.status = req.status;
+        Error.captureStackTrace(this, HTTPError);
+    }
+}
+exports.default = HTTPError;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZXJyb3JzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vc3JjL2Vycm9ycy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUVBLE1BQXFCLFNBQVUsU0FBUSxLQUFLO0lBSXhDLFlBQVksR0FBUSxFQUFFLEdBQUcsTUFBVztRQUNoQyxLQUFLLENBQUMsR0FBRyxNQUFNLENBQUMsQ0FBQztRQUVqQixJQUFJLENBQUMsR0FBRyxHQUFHLEdBQUcsQ0FBQztRQUNmLElBQUksQ0FBQyxNQUFNLEdBQUcsR0FBRyxDQUFDLE1BQU0sQ0FBQztRQUV6QixLQUFLLENBQUMsaUJBQWlCLENBQUMsSUFBSSxFQUFFLFNBQVMsQ0FBQyxDQUFDO0lBQzdDLENBQUM7Q0FDSjtBQVpELDRCQVlDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUmVxdWVzdCB9IGZyb20gJ25vZGUtZmV0Y2gnO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBIVFRQRXJyb3IgZXh0ZW5kcyBFcnJvciB7XG4gICAgcHVibGljIHJlczogUmVxdWVzdDtcbiAgICBwdWJsaWMgc3RhdHVzOiBudW1iZXI7XG5cbiAgICBjb25zdHJ1Y3RvcihyZXE6IGFueSwgLi4ucGFyYW1zOiBhbnkpIHtcbiAgICAgICAgc3VwZXIoLi4ucGFyYW1zKTtcblxuICAgICAgICB0aGlzLnJlcyA9IHJlcTtcbiAgICAgICAgdGhpcy5zdGF0dXMgPSByZXEuc3RhdHVzO1xuXG4gICAgICAgIEVycm9yLmNhcHR1cmVTdGFja1RyYWNlKHRoaXMsIEhUVFBFcnJvcik7XG4gICAgfVxufVxuIl19

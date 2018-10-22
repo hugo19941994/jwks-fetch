@@ -1,0 +1,11 @@
+{
+    "keys": [
+        {
+            "alg": "ES512",
+            "crv": "P-521",
+            "kty": "EC",
+            "x": "AfIWg6KydFGdbaTQog9pfp0GuAfwQjIXA46eMmthkHKfctMhTCdI-FDHOaLvCknv_ZUB9qhGP9Ilv9lxmwp41B5f",
+            "y": "AdKBihpvKFQrTyBPnmID3V822lxye-Ekvu5dFjfayoJso3t9XdpYuI_ugJQ1iXosz4KwPYD6wAY60rxZS6fn85gg"
+        }
+    ]
+}

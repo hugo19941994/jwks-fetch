@@ -1,0 +1,19 @@
+{
+    "keys": [
+        {
+            "alg": "ES512",
+            "kid": "kid1",
+            "crv": "P-521",
+            "kty": "EC",
+            "x": "AfIWg6KydFGdbaTQog9pfp0GuAfwQjIXA46eMmthkHKfctMhTCdI-FDHOaLvCknv_ZUB9qhGP9Ilv9lxmwp41B5f",
+            "y": "AdKBihpvKFQrTyBPnmID3V822lxye-Ekvu5dFjfayoJso3t9XdpYuI_ugJQ1iXosz4KwPYD6wAY60rxZS6fn85gg"
+        },
+        {
+            "e": "AQAB",
+            "kid": "kid1",
+            "kty": "RSA",
+            "n": "5LTYjBvFD7Zdz8_gP_YrB-sdUmfiB6dtbYc3lFw2GqpkG7qXRq1RjcNnJZbL9RO5O3YdJgyJmsz8oSP87KyJcm-DiE5XkioBTWHRGdT7pOjaPzZDN0yxOFFcykQyBL9A8SC2pad-hVDzFb9v3hL7ot8h4ANNZ8N0wxkRfpBKS9S2BLknc6D01bS1MvrdC7xMUG0Eg4-VlcJfFuZ3UADFuFhbZjSQP4ubpDZU_EKiENdNeDMMsTlxSVB7ZATwAfa2Gmrr0H899pD_DBl2Dw6izut-pVNsVaIDqcuZbQ334TeP_mUQ_783qhEFzNfv1yTZ0x4rKR6zvZ28DvoC3mxGvXM5P1bmqZ1C7WQMmHzUwLNskoM_mhwluyIuYL1U2LlQa9nhdUM3zkeqjt1KVmMInmDSb1OdzsWUb8kzXbH0gcscmBn3-H6nBJdcI3N6xSneyg2K1TdIHmgkTEO3m2FsGTBpmgfhcTOFUUaBrKKP89xHdAZtnJvdUsHlrfCI9718bvNN2SJ0qnYhDlHw3XaHhpqx2WbWaOv0wMawEmQn6x6B1d3MJnfs6yFfe5SHFg8YQIRDO1opbQojz3ONg2nUsFF5AxjzZ7YmGtYMM7YhuPN8RwIwsyR3tQ376tiRmprd2kSyUIN98o9TtZHkyeCn-umNNspKb5BU4zH_pgHhM9E",
+            "use": "sig"
+        }
+    ]
+}
