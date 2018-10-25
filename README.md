@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.com/hugo19941994/jwks-fetch.svg?token=uZQLRmskW3ypFsCoHyMx&branch=master)](https://travis-ci.com/hugo19941994/jwks-fetch)
 [![Coverage Status](https://coveralls.io/repos/github/hugo19941994/jwks-fetch/badge.svg?branch=master)](https://coveralls.io/github/hugo19941994/jwks-fetch?branch=master)
+[![npm Version](https://badgen.net/npm/v/jwks-fetch)](https://www.npmjs.com/package/jwks-fetch)
 
 jwks-fetch is a NodeJS library which retrieves asymmetric keys in JWKs format. It supports both RSA and EC keys.
 
