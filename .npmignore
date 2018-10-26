@@ -1,0 +1,6 @@
+src/
+.travis.yml
+coverage
+jest.config.js
+tsconfig.json
+tslint.json

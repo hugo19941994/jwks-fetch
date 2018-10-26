@@ -12,12 +12,25 @@
         "url": "https://github.com/hugo19941994/jwks-fetch/issues",
         "email": "me@hugofs.com"
     },
+    "engines": {
+        "node": ">=8.0.0"
+    },
     "scripts": {
         "build": "tsc",
-        "watch": "tsc --watch",
+        "lint": "tslint src/*.ts",
+        "prepack": "tsc",
+        "pretest": "tsc",
         "test": "jest --coverage",
-        "lint": "tslint src/*.ts"
+        "watch": "tsc --watch"
     },
+    "keywords": [
+        "jwks",
+        "jwa",
+        "jwk",
+        "openid-connect",
+        "rsa",
+        "ecdsa"
+    ],
     "author": "Hugo Ferrando Seage <me@hugofs.com> (https://hugofs.com)",
     "license": "Apache-2.0",
     "devDependencies": {
