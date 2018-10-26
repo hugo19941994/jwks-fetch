@@ -21,11 +21,11 @@ test('fetch RSA key (which contains a kid) with kid', async () => {
         })
     );
 
-    const client = new JWKSClient({strictSSL: false});
+    const client = new JWKSClient({ strictSSL: false });
     expect(await client.retrieve('https://test.com/jwks.json', 'si_authentication')).toEqual(RSAPubKey1);
 });
 
-test("fetch RSA key (which doesn't contain a kid) without kid", async () => {
+test("if kid is given fetching an RSA key (which doesn't contain a kid) should throw", async () => {
     mockedFetch.mockImplementation(() =>
         Promise.resolve({
             json: () => {
@@ -36,7 +36,7 @@ test("fetch RSA key (which doesn't contain a kid) without kid", async () => {
     );
 
     const client = new JWKSClient({});
-    expect(await client.retrieve('https://test.com/jwks.json', 'si_authentication')).toEqual(RSAPubKey1);
+    expect(client.retrieve('https://test.com/jwks.json', 'si_authentication')).rejects.toThrowError(Error);
 });
 
 test("fetch RSA key (which doesn't contain a kid) without kid", async () => {

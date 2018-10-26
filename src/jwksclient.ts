@@ -80,7 +80,7 @@ export class JWKSClient {
             throw new Error('Empty JWKs');
         }
 
-        if (keys.length === 1) {
+        if (keys.length === 1 && !kid) {
             return keys[0];
         }
 
