@@ -47,7 +47,12 @@ export class JWKSClient {
      * Retrieve a key from a remote URL
      */
     private async getFromURL(url: string, kid?: string): Promise<string> {
-        const res = await fetch(url, { agent: this.agent });
+        let res: any = null;
+        try {
+            res = await fetch(url, { agent: this.agent });
+        } catch (err) {
+            throw new HTTPError(null, err);
+        }
 
         if (res.status < 200 || res.status >= 300) {
             throw new HTTPError(res, `URL ${url} did not return 2XX`);

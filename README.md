@@ -54,6 +54,7 @@ client.retrieve(url, kid)
 ## HTTPError
 
 If the `jwks_uri` didn't respond with an HTTP status code 200 a custom HTTPError exception will be thrown. From there you can access the raw response with `err.res` and the status code with `err.status`.
+If an exception occurs when requesting the JWKs an HTTPError will also be thrown, but with a null `res`.
 
 ## Useful links
 

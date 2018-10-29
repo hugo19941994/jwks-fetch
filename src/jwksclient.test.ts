@@ -150,6 +150,14 @@ test('HTTPError if status !== 200', async () => {
     expect(client.retrieve('https://test.com/jwks.json', 'kid1')).rejects.toThrowError(HTTPError);
 });
 
+test('HTTPError if fetch throws', async () => {
+    mockedFetch.mockImplementation(() => Promise.reject('exception'));
+
+    const client = new JWKSClient({ cache: true });
+
+    expect(client.retrieve('https://test.com/jwks.json', 'kid1')).rejects.toThrowError(HTTPError);
+});
+
 test('No kid or alg with multiple JWKs should throw', async () => {
     mockedFetch.mockImplementation(() =>
         Promise.resolve({

@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Remove comments from dist files
+- Throw HTTPError (instead of regular error) with null res if fetch throws an exception
 
 ## [0.2.2] - 2018-10-26
 ### Added
