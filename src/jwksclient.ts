@@ -20,7 +20,10 @@ export class JWKSClient {
         this.caching = options.cache == null ? false : options.cache;
         this.cache = new Cache(options.ttl || 60);
 
-        this.agent = new Agent({ rejectUnauthorized: options.strictSSL == null ? true : options.strictSSL });
+        this.agent = new Agent({
+            ecdhCurve: 'auto',
+            rejectUnauthorized: options.strictSSL == null ? true : options.strictSSL
+        });
     }
 
     /*
