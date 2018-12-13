@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.2.4]
 ### Changed
 - Updated package-lock.json to fix a potential vulnerability due to the merge dependency
 - Add ecdhCurve: 'auto' in the agent options to fix a bug in Node 8 (https://github.com/nodejs/node/issues/19359)
