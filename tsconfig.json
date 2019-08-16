@@ -6,10 +6,12 @@
         "removeComments": true,
         "outDir": "./dist",
         "rootDir": "./src",
+        "declaration": true,
         "strict": true,
         "esModuleInterop": true,
         "inlineSourceMap": true,
         "inlineSources": true
     },
-    "exclude": ["src/*.test.ts"]
+	"exclude": ["src/*.test.ts"],
+	"include": ["./src"]
 }
