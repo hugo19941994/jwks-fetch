@@ -6,7 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.4]
+## [1.0.0] - 2019-08-17
+### Changed
+- Updated dependencies
+- Generate declaration files
+- 1.x.x release, as it's been used in production for a while
+
+## [0.2.4] - 2018-12-13
 ### Changed
 - Updated package-lock.json to fix a potential vulnerability due to the merge dependency
 - Add ecdhCurve: 'auto' in the agent options to fix a bug in Node 8 (https://github.com/nodejs/node/issues/19359)
