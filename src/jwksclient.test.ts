@@ -18,7 +18,7 @@ test('fetch RSA key (which contains a kid) with kid', async () => {
                 return RSPubJWKId1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ strictSSL: false });
@@ -32,7 +32,7 @@ test("if kid is given fetching an RSA key (which doesn't contain a kid) should t
                 return RSPubJWK1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({});
@@ -46,7 +46,7 @@ test("fetch RSA key (which doesn't contain a kid) without kid", async () => {
                 return RSPubJWK1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({});
@@ -60,7 +60,7 @@ test('fetch EC key (which contains a kid) with kid', async () => {
                 return ECPubJWKId1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({});
@@ -74,7 +74,7 @@ test('fetch EC key (which contains a kid) without kid', async () => {
                 return ECPubJWK1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({});
@@ -88,7 +88,7 @@ test('make sure caching works when enabled', async () => {
                 return ECPubJWK1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
@@ -107,7 +107,7 @@ test('if caching is disabled make sure we hit the API every time', async () => {
                 return ECPubJWK1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: false });
@@ -126,7 +126,7 @@ test('search with kid', async () => {
                 return MixPubJWKId1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: false });
@@ -142,7 +142,7 @@ test('HTTPError if status !== 200', async () => {
                 return MixPubJWKId1;
             },
             status: 404
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
@@ -165,7 +165,7 @@ test('No kid or alg with multiple JWKs should throw', async () => {
                 return MixPubJWKId1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
@@ -180,7 +180,7 @@ test('Invalid kid should throw', async () => {
                 return MixPubJWKId1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
@@ -195,7 +195,7 @@ test('Empty JWKs should throw', async () => {
                 return { keys: [] };
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
@@ -210,7 +210,7 @@ test('Invalid JWKs should throw', async () => {
                 return {};
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
@@ -225,7 +225,7 @@ test('Invalid JWKs should throw', async () => {
                 return { test: 'test' };
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
@@ -240,7 +240,7 @@ test('Invalid JWKs should throw', async () => {
                 return { keys: [{ kid: 'test' }] };
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
@@ -255,7 +255,7 @@ test('Symmetric keys should throw', async () => {
                 return SymmetricJWK1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
@@ -272,7 +272,7 @@ test('Repeated kids should throw', async () => {
                 return RepeatedJWK1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
@@ -287,7 +287,7 @@ test('URL is obligatory', async () => {
                 return MixPubJWKId1;
             },
             status: 200
-        })
+        }) as any
     );
 
     const client = new JWKSClient({ cache: true });
