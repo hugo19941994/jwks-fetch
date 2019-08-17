@@ -1,52 +1,53 @@
 {
-    "name": "jwks-fetch",
-    "version": "1.0.0",
-    "description": "A JWKS client library",
-    "main": "dist/index.js",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/hugo19941994/jwks-fetch.git"
-    },
-    "homepage": "https://github.com/hugo19941994/jwks-fetch",
-    "bugs": {
-        "url": "https://github.com/hugo19941994/jwks-fetch/issues",
-        "email": "me@hugofs.com"
-    },
-    "engines": {
-        "node": ">=8.0.0"
-    },
-    "scripts": {
-        "build": "tsc",
-        "lint": "tslint src/*.ts",
-        "prepack": "tsc",
-        "pretest": "tsc",
-        "test": "jest --coverage",
-        "watch": "tsc --watch"
-    },
-    "keywords": [
-        "jwks",
-        "jwa",
-        "jwk",
-        "openid-connect",
-        "rsa",
-        "ecdsa"
-    ],
-    "author": "Hugo Ferrando Seage <me@hugofs.com> (https://hugofs.com)",
-    "license": "Apache-2.0",
-    "devDependencies": {
-        "@types/jest": "^24.0.17",
-        "@types/node": "^12.0.0",
-        "@types/node-fetch": "^2.1.2",
-        "coveralls": "^3.0.2",
-        "jest": "^24.3.1",
-        "prettier": "^1.14.3",
-        "ts-jest": "^24.0.2",
-        "tslint": "^5.11.0",
-        "tslint-config-prettier": "^1.15.0",
-        "typescript": "^3.2.2"
-    },
-    "dependencies": {
-        "jwk-to-pem": "^2.0.0",
-        "node-fetch": "^2.2.0"
-    }
+  "name": "jwks-fetch",
+  "version": "1.0.0",
+  "description": "A JWKS client library",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hugo19941994/jwks-fetch.git"
+  },
+  "homepage": "https://github.com/hugo19941994/jwks-fetch",
+  "bugs": {
+    "url": "https://github.com/hugo19941994/jwks-fetch/issues",
+    "email": "me@hugofs.com"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint src/*.ts",
+    "prepack": "tsc",
+    "pretest": "tsc",
+    "test": "jest --coverage",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "jwks",
+    "jwa",
+    "jwk",
+    "openid-connect",
+    "rsa",
+    "ecdsa"
+  ],
+  "author": "Hugo Ferrando Seage <me@hugofs.com> (https://hugofs.com)",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/jest": "^24.0.17",
+    "@types/node": "^12.0.0",
+    "@types/node-fetch": "^2.1.2",
+    "coveralls": "^3.0.2",
+    "jest": "^24.3.1",
+    "prettier": "^1.14.3",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "jwk-to-pem": "^2.0.0",
+    "node-fetch": "^2.2.0"
+  }
 }
