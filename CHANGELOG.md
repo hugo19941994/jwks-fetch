@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2019-08-17
+- Add "types": "dist/index.d.ts" in package.json
+
 ## [1.0.0] - 2019-08-17
 ### Changed
 - Updated dependencies
