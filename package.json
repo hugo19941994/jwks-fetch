@@ -35,7 +35,7 @@
   "author": "Hugo Ferrando Seage <me@hugofs.com> (https://hugofs.com)",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/jest": "^26.0.0",
+    "@types/jest": "^27.0.3",
     "@types/node": "^14.0.1",
     "@types/node-fetch": "^2.1.2",
     "coveralls": "^3.0.2",
