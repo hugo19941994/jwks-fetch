@@ -1,7 +1,6 @@
-import { Agent } from 'https';
+import { fetch, Agent } from 'undici';
 // @ts-ignore
 import jwkToPem from 'jwk-to-pem';
-import fetch, { FetchError } from 'node-fetch';
 import { Cache } from './cache';
 import HTTPError from './errors';
 
@@ -21,8 +20,9 @@ export class JWKSClient {
         this.cache = new Cache(options.ttl || 60);
 
         this.agent = new Agent({
-            ecdhCurve: 'auto',
-            rejectUnauthorized: options.strictSSL == null ? true : options.strictSSL
+            connect: {
+                rejectUnauthorized: options.strictSSL == null ? true : options.strictSSL
+            }
         });
     }
 
@@ -52,7 +52,7 @@ export class JWKSClient {
     private async getFromURL(url: string, kid?: string): Promise<string> {
         let res: any = null;
         try {
-            res = await fetch(url, { agent: this.agent });
+            res = await fetch(url, { dispatcher: this.agent });
         } catch (err) {
             throw new HTTPError(null, err);
         }

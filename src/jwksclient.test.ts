@@ -1,11 +1,11 @@
 import { readFileSync } from 'fs';
-import fetch from 'node-fetch';
-import { mocked } from 'ts-jest/utils';
+import { fetch } from 'undici';
+import { mocked } from 'jest-mock';
 import HTTPError from '../src/errors';
 import { JWKSClient } from '../src/jwksclient';
 
-jest.mock('node-fetch');
-const mockedFetch = mocked(fetch, true);
+jest.mock('undici');
+const mockedFetch = mocked(fetch, { shallow: false });
 
 beforeEach(() => {
     mockedFetch.mockClear();
@@ -17,7 +17,7 @@ test('fetch RSA key (which contains a kid) with kid', async () => {
             json: () => {
                 return RSPubJWKId1;
             },
-            status: 200
+            status: 200,
         }) as any
     );
 

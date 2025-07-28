@@ -1,4 +1,4 @@
-import { Request } from 'node-fetch';
+import { Request } from 'undici';
 
 export default class HTTPError extends Error {
     public res: Request | null;
