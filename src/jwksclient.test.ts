@@ -1,26 +1,23 @@
-import { readFileSync } from "fs";
+import { readFileSync } from "node:fs";
 import { fetch } from "undici";
-import { beforeEach, describe, expect, test, vi } from "vitest";
+import { beforeEach, expect, test, vi } from "vitest";
 import HTTPError from "../src/errors";
 import { JWKSClient } from "../src/jwksclient";
 
 vi.mock("undici");
-const mockedFetch = vi.mocked(fetch);
+const mockedFetch = vi.mocked(fetch, { partial: true });
 
 beforeEach(() => {
   mockedFetch.mockClear();
 });
 
 test("fetch RSA key (which contains a kid) with kid", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return RSPubJWKId1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return RSPubJWKId1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ strictSSL: false });
   expect(
@@ -29,15 +26,12 @@ test("fetch RSA key (which contains a kid) with kid", async () => {
 });
 
 test("if kid is given fetching an RSA key (which doesn't contain a kid) should throw", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return RSPubJWK1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return RSPubJWK1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({});
   await expect(
@@ -46,15 +40,12 @@ test("if kid is given fetching an RSA key (which doesn't contain a kid) should t
 });
 
 test("fetch RSA key (which doesn't contain a kid) without kid", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return RSPubJWK1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return RSPubJWK1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({});
   expect(await client.retrieve("https://test.com/jwks.json")).toEqual(
@@ -63,15 +54,12 @@ test("fetch RSA key (which doesn't contain a kid) without kid", async () => {
 });
 
 test("fetch EC key (which contains a kid) with kid", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return ECPubJWKId1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return ECPubJWKId1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({});
   expect(
@@ -80,15 +68,12 @@ test("fetch EC key (which contains a kid) with kid", async () => {
 });
 
 test("fetch EC key (which contains a kid) without kid", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return ECPubJWK1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return ECPubJWK1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({});
   expect(await client.retrieve("https://test.com/jwks.json")).toEqual(
@@ -97,15 +82,12 @@ test("fetch EC key (which contains a kid) without kid", async () => {
 });
 
 test("make sure caching works when enabled", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return ECPubJWK1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return ECPubJWK1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: true });
 
@@ -123,15 +105,12 @@ test("make sure caching works when enabled", async () => {
 });
 
 test("if caching is disabled make sure we hit the API every time", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return ECPubJWK1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return ECPubJWK1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: false });
 
@@ -149,15 +128,12 @@ test("if caching is disabled make sure we hit the API every time", async () => {
 });
 
 test("search with kid", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return MixPubJWKId1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return MixPubJWKId1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: false });
 
@@ -170,15 +146,12 @@ test("search with kid", async () => {
 });
 
 test("HTTPError if status !== 200", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return MixPubJWKId1;
-        },
-        status: 404,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return MixPubJWKId1;
+    },
+    status: 404,
+  });
 
   const client = new JWKSClient({ cache: true });
 
@@ -198,15 +171,12 @@ test("HTTPError if fetch throws", async () => {
 });
 
 test("No kid or alg with multiple JWKs should throw", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return MixPubJWKId1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return MixPubJWKId1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: true });
 
@@ -216,15 +186,12 @@ test("No kid or alg with multiple JWKs should throw", async () => {
 });
 
 test("Invalid kid should throw", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return MixPubJWKId1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return MixPubJWKId1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: true });
 
@@ -234,15 +201,12 @@ test("Invalid kid should throw", async () => {
 });
 
 test("Empty JWKs should throw", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return { keys: [] };
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return Promise.resolve({ keys: [] });
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: true });
 
@@ -252,15 +216,12 @@ test("Empty JWKs should throw", async () => {
 });
 
 test("Invalid JWKs should throw", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return {};
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return Promise.resolve({});
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: true });
 
@@ -270,15 +231,12 @@ test("Invalid JWKs should throw", async () => {
 });
 
 test("Invalid JWKs should throw", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return { test: "test" };
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return Promise.resolve({ test: "test" });
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: true });
 
@@ -288,15 +246,12 @@ test("Invalid JWKs should throw", async () => {
 });
 
 test("Invalid JWKs should throw", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return { keys: [{ kid: "test" }] };
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return Promise.resolve({ keys: [{ kid: "test" }] });
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: true });
 
@@ -306,15 +261,12 @@ test("Invalid JWKs should throw", async () => {
 });
 
 test("Symmetric keys should throw", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return SymmetricJWK1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return SymmetricJWK1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: true });
 
@@ -327,15 +279,12 @@ test("Symmetric keys should throw", async () => {
 });
 
 test("Repeated kids should throw", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return RepeatedJWK1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return RepeatedJWK1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: true });
 
@@ -345,19 +294,16 @@ test("Repeated kids should throw", async () => {
 });
 
 test("URL is obligatory", async () => {
-  mockedFetch.mockImplementation(
-    () =>
-      Promise.resolve({
-        json: () => {
-          return MixPubJWKId1;
-        },
-        status: 200,
-      }) as any,
-  );
+  mockedFetch.mockResolvedValueOnce({
+    json: () => {
+      return MixPubJWKId1;
+    },
+    status: 200,
+  });
 
   const client = new JWKSClient({ cache: true });
 
-  // @ts-ignore
+  // @ts-expect-error Testing invalid input
   await expect(client.retrieve(undefined, "kid1")).rejects.toThrow(Error);
 });
 

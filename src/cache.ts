@@ -6,7 +6,10 @@ function ts(): number {
 }
 
 export class Cache {
-  public cache: any;
+  public cache: Record<
+    string,
+    { exp: number; value: string; timeout?: NodeJS.Timeout }
+  >;
   public ttl: number;
 
   constructor(ttl: number) {

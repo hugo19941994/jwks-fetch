@@ -1,6 +1,5 @@
-// @ts-ignore
-import jwkToPem from "jwk-to-pem";
-import { Agent, fetch } from "undici";
+import jwkToPem, { type JWK } from "jwk-to-pem";
+import { Agent, fetch, type Response } from "undici";
 import { Cache } from "./cache";
 import HTTPError from "./errors";
 
@@ -9,6 +8,14 @@ interface IOptions {
   ttl?: number;
   strictSSL?: boolean;
 }
+
+interface jwks {
+  keys: jwk[];
+}
+
+type jwk = JWK & {
+  kid?: string;
+};
 
 export class JWKSClient {
   private cache: Cache;
@@ -51,18 +58,18 @@ export class JWKSClient {
    * Retrieve a key from a remote URL
    */
   private async getFromURL(url: string, kid?: string): Promise<string> {
-    let res: any = null;
+    let res: Response;
     try {
       res = await fetch(url, { dispatcher: this.agent });
     } catch (err) {
-      throw new HTTPError(null, err);
+      throw new HTTPError(null, (err as Error).message);
     }
 
     if (res.status < 200 || res.status >= 300) {
       throw new HTTPError(res, `URL ${url} did not return 2XX`);
     }
 
-    const jwks = await res.json();
+    const jwks = (await res.json()) as jwks;
 
     if (!jwks.keys) {
       throw new Error("Invalid JWKs format");
@@ -84,7 +91,7 @@ export class JWKSClient {
   /*
    * Select a key from a list of JWK
    */
-  private findKey(keys: any[], kid?: string): object {
+  private findKey(keys: jwk[], kid?: string): jwk {
     if (keys.length === 0) {
       throw new Error("Empty JWKs");
     }

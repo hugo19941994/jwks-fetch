@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test, vi } from "vitest";
+import { expect, test, vi } from "vitest";
 import { Cache } from "../src/cache";
 
 test("null if key is not found", () => {
