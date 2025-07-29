@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace `node-fetch` with `undici`
 - Replace `jest` with `vitest`
 - Replace `prettier` and `tslint` with `biome`
+- This library is now published as ESM only
 
 ### Added
 
