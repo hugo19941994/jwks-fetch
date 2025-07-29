@@ -1,6 +1,6 @@
 # JWKs Fetch
 
-[![Build Status](https://travis-ci.com/hugo19941994/jwks-fetch.svg?token=uZQLRmskW3ypFsCoHyMx&branch=master)](https://travis-ci.com/hugo19941994/jwks-fetch)
+[![Build Status](https://github.com/hugo19941994/jwks-fetch/actions/workflows/ci.yaml/badge.svg)](https://github.com/hugo19941994/jwks-fetch/actions/workflows/ci.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/hugo19941994/jwks-fetch/badge.svg?branch=master)](https://coveralls.io/github/hugo19941994/jwks-fetch?branch=master)
 [![npm Version](https://badgen.net/npm/v/jwks-fetch)](https://www.npmjs.com/package/jwks-fetch)
 
