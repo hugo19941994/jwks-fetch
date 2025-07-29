@@ -1,8 +1,8 @@
 import { readFileSync } from "node:fs";
 import { fetch } from "undici";
 import { beforeEach, expect, test, vi } from "vitest";
-import HTTPError from "../src/errors";
-import { JWKSClient } from "../src/jwksclient";
+import HTTPError from "../src/errors.js";
+import { JWKSClient } from "../src/jwksclient.js";
 
 vi.mock("undici");
 const mockedFetch = vi.mocked(fetch, { partial: true });

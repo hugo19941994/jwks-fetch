@@ -1,4 +1,4 @@
-import HTTPError from "./errors";
-import { JWKSClient } from "./jwksclient";
+import HTTPError from "./errors.js";
+import { JWKSClient } from "./jwksclient.js";
 
 export { JWKSClient, HTTPError };

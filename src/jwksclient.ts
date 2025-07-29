@@ -1,7 +1,7 @@
 import jwkToPem, { type JWK } from "jwk-to-pem";
 import { Agent, fetch, type Response } from "undici";
-import { Cache } from "./cache";
-import HTTPError from "./errors";
+import { Cache } from "./cache.js";
+import HTTPError from "./errors.js";
 
 interface IOptions {
   cache?: boolean;
@@ -97,7 +97,11 @@ export class JWKSClient {
     }
 
     if (keys.length === 1 && !kid) {
-      return keys[0];
+      const key = keys[0];
+      if (!key) {
+        throw new Error("No key found in JWKs");
+      }
+      return key;
     }
 
     // If no kid is present only one key must be present inside the JWKs
@@ -115,6 +119,10 @@ export class JWKSClient {
       throw new Error(`More than one key with specified kid were found`);
     }
 
-    return keys[0];
+    const key = keys[0];
+    if (!key) {
+      throw new Error("No key found in JWKs");
+    }
+    return key;
   }
 }

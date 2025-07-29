@@ -1,5 +1,5 @@
 import { expect, test, vi } from "vitest";
-import { Cache } from "../src/cache";
+import { Cache } from "../src/cache.js";
 
 test("null if key is not found", () => {
   const client = new Cache(60);
