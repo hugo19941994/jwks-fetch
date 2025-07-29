@@ -9,11 +9,11 @@ interface IOptions {
   strictSSL?: boolean;
 }
 
-interface jwks {
-  keys: jwk[];
+interface JWKS {
+  keys: JWKWithKid[];
 }
 
-type jwk = JWK & {
+type JWKWithKid = JWK & {
   kid?: string;
 };
 
@@ -69,7 +69,7 @@ export class JWKSClient {
       throw new HTTPError(res, `URL ${url} did not return 2XX`);
     }
 
-    const jwks = (await res.json()) as jwks;
+    const jwks = (await res.json()) as JWKS;
 
     if (!jwks.keys) {
       throw new Error("Invalid JWKs format");
@@ -91,7 +91,7 @@ export class JWKSClient {
   /*
    * Select a key from a list of JWK
    */
-  private findKey(keys: jwk[], kid?: string): jwk {
+  private findKey(keys: JWKWithKid[], kid?: string): JWKWithKid {
     if (keys.length === 0) {
       throw new Error("Empty JWKs");
     }
