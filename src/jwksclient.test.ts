@@ -105,7 +105,7 @@ test("make sure caching works when enabled", async () => {
 });
 
 test("if caching is disabled make sure we hit the API every time", async () => {
-  mockedFetch.mockResolvedValueOnce({
+  mockedFetch.mockResolvedValue({
     json: () => {
       return ECPubJWK1;
     },
@@ -128,7 +128,7 @@ test("if caching is disabled make sure we hit the API every time", async () => {
 });
 
 test("search with kid", async () => {
-  mockedFetch.mockResolvedValueOnce({
+  mockedFetch.mockResolvedValue({
     json: () => {
       return MixPubJWKId1;
     },
