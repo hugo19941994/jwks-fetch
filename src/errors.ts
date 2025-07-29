@@ -1,15 +1,16 @@
-import { Request } from 'node-fetch';
+import type { Response } from "undici";
 
 export default class HTTPError extends Error {
-    public res: Request | null;
-    public status: number | null;
+  public res: Response | null;
+  public status: number | null;
 
-    constructor(req?: any, ...params: any) {
-        super(...params);
+  constructor(res?: Response | null, message?: string) {
+    super(message);
 
-        this.res = req ? req : null;
-        this.status = req ? req.status : null;
+    this.name = "HTTPError";
+    this.res = res ? res : null;
+    this.status = res ? res.status : null;
 
-        Error.captureStackTrace(this, HTTPError);
-    }
+    Error.captureStackTrace(this, HTTPError);
+  }
 }

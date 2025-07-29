@@ -1,6 +1,6 @@
 # JWKs Fetch
 
-[![Build Status](https://travis-ci.com/hugo19941994/jwks-fetch.svg?token=uZQLRmskW3ypFsCoHyMx&branch=master)](https://travis-ci.com/hugo19941994/jwks-fetch)
+[![Build Status](https://github.com/hugo19941994/jwks-fetch/actions/workflows/ci.yaml/badge.svg)](https://github.com/hugo19941994/jwks-fetch/actions/workflows/ci.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/hugo19941994/jwks-fetch/badge.svg?branch=master)](https://coveralls.io/github/hugo19941994/jwks-fetch?branch=master)
 [![npm Version](https://badgen.net/npm/v/jwks-fetch)](https://www.npmjs.com/package/jwks-fetch)
 
@@ -8,7 +8,7 @@ jwks-fetch is a NodeJS library which retrieves asymmetric keys in JWKs format. I
 
 > npm install --save jwks-fetch
 
-It implements a Promise based API. NodeJS 8 or above is required. For now it's only compatible with Node, but isomorphic support is planned.
+It implements a Promise based API. NodeJS 18 or above is required (bun and deno should work too). Browser support is planned.
 
 ```javascript
 const {JWKSClient, HTTPError} = require('jwks-fetch');

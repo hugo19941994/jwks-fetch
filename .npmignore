@@ -1,6 +1,9 @@
+.github/
+coverage/
 src/
-.travis.yml
-coverage
-jest.config.js
+.editorconfig
+.gitignore
+biome.json
 tsconfig.json
-tslint.json
+vitest.config.ts
+

@@ -1,17 +1,30 @@
 {
-    "compilerOptions": {
-        "target": "es2016",
-        "module": "commonjs",
-        // "lib": [],
-        "removeComments": true,
-        "outDir": "./dist",
-        "rootDir": "./src",
-        "declaration": true,
-        "strict": true,
-        "esModuleInterop": true,
-        "inlineSourceMap": true,
-        "inlineSources": true
-    },
-	"exclude": ["src/*.test.ts"],
-	"include": ["./src"]
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "module": "NodeNext",
+    "outDir": "dist",
+    "sourceMap": true,
+    "declaration": true,
+    "lib": [
+      "es2022"
+    ],
+    "removeComments": true,
+    "rootDir": "./src",
+  },
+  "exclude": [
+    "src/*.test.ts"
+  ],
+  "include": [
+    "./src"
+  ]
 }
