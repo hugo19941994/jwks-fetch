@@ -1,11 +1,11 @@
 import { readFileSync } from 'fs';
 import { fetch } from 'undici';
-import { mocked } from 'jest-mock';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import HTTPError from '../src/errors';
 import { JWKSClient } from '../src/jwksclient';
 
-jest.mock('undici');
-const mockedFetch = mocked(fetch, { shallow: false });
+vi.mock('undici');
+const mockedFetch = vi.mocked(fetch);
 
 beforeEach(() => {
     mockedFetch.mockClear();
@@ -36,7 +36,7 @@ test("if kid is given fetching an RSA key (which doesn't contain a kid) should t
     );
 
     const client = new JWKSClient({});
-    expect(client.retrieve('https://test.com/jwks.json', 'si_authentication')).rejects.toThrowError(Error);
+    await expect(client.retrieve('https://test.com/jwks.json', 'si_authentication')).rejects.toThrowError(Error);
 });
 
 test("fetch RSA key (which doesn't contain a kid) without kid", async () => {
@@ -147,7 +147,7 @@ test('HTTPError if status !== 200', async () => {
 
     const client = new JWKSClient({ cache: true });
 
-    expect(client.retrieve('https://test.com/jwks.json', 'kid1')).rejects.toThrowError(HTTPError);
+    await expect(client.retrieve('https://test.com/jwks.json', 'kid1')).rejects.toThrowError(HTTPError);
 });
 
 test('HTTPError if fetch throws', async () => {
@@ -155,7 +155,7 @@ test('HTTPError if fetch throws', async () => {
 
     const client = new JWKSClient({ cache: true });
 
-    expect(client.retrieve('https://test.com/jwks.json', 'kid1')).rejects.toThrowError(HTTPError);
+    await expect(client.retrieve('https://test.com/jwks.json', 'kid1')).rejects.toThrowError(HTTPError);
 });
 
 test('No kid or alg with multiple JWKs should throw', async () => {
@@ -170,7 +170,7 @@ test('No kid or alg with multiple JWKs should throw', async () => {
 
     const client = new JWKSClient({ cache: true });
 
-    expect(client.retrieve('https://test.com/jwks.json')).rejects.toThrow(Error);
+    await expect(client.retrieve('https://test.com/jwks.json')).rejects.toThrow(Error);
 });
 
 test('Invalid kid should throw', async () => {
@@ -185,7 +185,7 @@ test('Invalid kid should throw', async () => {
 
     const client = new JWKSClient({ cache: true });
 
-    expect(client.retrieve('https://test.com/jwks.json', 'error')).rejects.toThrow(Error);
+    await expect(client.retrieve('https://test.com/jwks.json', 'error')).rejects.toThrow(Error);
 });
 
 test('Empty JWKs should throw', async () => {
@@ -200,7 +200,7 @@ test('Empty JWKs should throw', async () => {
 
     const client = new JWKSClient({ cache: true });
 
-    expect(client.retrieve('https://test.com/jwks.json', 'error')).rejects.toThrow(Error);
+    await expect(client.retrieve('https://test.com/jwks.json', 'error')).rejects.toThrow(Error);
 });
 
 test('Invalid JWKs should throw', async () => {
@@ -215,7 +215,7 @@ test('Invalid JWKs should throw', async () => {
 
     const client = new JWKSClient({ cache: true });
 
-    expect(client.retrieve('https://test.com/jwks.json', 'error')).rejects.toThrow(Error);
+    await expect(client.retrieve('https://test.com/jwks.json', 'error')).rejects.toThrow(Error);
 });
 
 test('Invalid JWKs should throw', async () => {
@@ -230,7 +230,7 @@ test('Invalid JWKs should throw', async () => {
 
     const client = new JWKSClient({ cache: true });
 
-    expect(client.retrieve('https://test.com/jwks.json', 'error')).rejects.toThrow(Error);
+    await expect(client.retrieve('https://test.com/jwks.json', 'error')).rejects.toThrow(Error);
 });
 
 test('Invalid JWKs should throw', async () => {
@@ -245,7 +245,7 @@ test('Invalid JWKs should throw', async () => {
 
     const client = new JWKSClient({ cache: true });
 
-    expect(client.retrieve('https://test.com/jwks.json', 'test')).rejects.toThrow(Error);
+    await expect(client.retrieve('https://test.com/jwks.json', 'test')).rejects.toThrow(Error);
 });
 
 test('Symmetric keys should throw', async () => {
@@ -260,7 +260,7 @@ test('Symmetric keys should throw', async () => {
 
     const client = new JWKSClient({ cache: true });
 
-    expect(
+    await expect(
         client.retrieve('https://test.com/jwks.json', 'HMAC key used in JWS spec Appendix A.1 example')
     ).rejects.toThrow(Error);
 });
@@ -277,7 +277,7 @@ test('Repeated kids should throw', async () => {
 
     const client = new JWKSClient({ cache: true });
 
-    expect(client.retrieve('https://test.com/jwks.json', 'kid1')).rejects.toThrow(Error);
+    await expect(client.retrieve('https://test.com/jwks.json', 'kid1')).rejects.toThrow(Error);
 });
 
 test('URL is obligatory', async () => {
@@ -293,7 +293,7 @@ test('URL is obligatory', async () => {
     const client = new JWKSClient({ cache: true });
 
     // @ts-ignore
-    expect(client.retrieve(undefined, 'kid1')).rejects.toThrow(Error);
+    await expect(client.retrieve(undefined, 'kid1')).rejects.toThrow(Error);
 });
 
 const RSAPubKey1 = readFileSync('src/fixtures/PEMs/RSAPubKey1.pem', 'utf8');

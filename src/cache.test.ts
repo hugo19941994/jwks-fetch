@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { Cache } from '../src/cache';
 
 test('null if key is not found', () => {
@@ -12,29 +13,29 @@ test('getting a value which was previously set', () => {
 });
 
 test('values are deleted after the timeout', () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const client = new Cache(1);
 
-    Date.now = jest.fn(() => 0);
+    Date.now = vi.fn(() => 0);
     client.set('key', 'value');
 
-    Date.now = jest.fn(() => 500);
+    Date.now = vi.fn(() => 500);
     expect(client.get('key')).toEqual('value');
 
-    Date.now = jest.fn(() => 2000);
-    jest.runAllTimers();
+    Date.now = vi.fn(() => 2000);
+    vi.runAllTimers();
     expect(client.get('key')).toEqual(null);
 });
 
 test('expired values are deleted before timeout and timeout is canceled', () => {
     const client = new Cache(1);
 
-    Date.now = jest.fn(() => 0);
+    Date.now = vi.fn(() => 0);
     client.set('key', 'value');
 
-    Date.now = jest.fn(() => 500);
+    Date.now = vi.fn(() => 500);
     expect(client.get('key')).toEqual('value');
 
-    Date.now = jest.fn(() => 2000);
+    Date.now = vi.fn(() => 2000);
     expect(client.get('key')).toEqual(null);
 });
