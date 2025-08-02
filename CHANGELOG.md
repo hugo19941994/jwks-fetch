@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2025-08-02
+
 ### Changed
 
 - Changed minimum required Node version to 20.18.1 to align with undici
