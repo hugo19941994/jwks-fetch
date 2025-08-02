@@ -8,7 +8,7 @@ jwks-fetch is a NodeJS library which retrieves asymmetric keys in JWKs format. I
 
 > npm install --save jwks-fetch
 
-It implements a Promise based API. NodeJS 18 or above is required (bun and deno should work too). Browser support is planned.
+It implements a Promise based API. NodeJS 20 or above is required (bun and deno should work too). Browser support is planned.
 
 ```javascript
 const {JWKSClient, HTTPError} = require('jwks-fetch');
