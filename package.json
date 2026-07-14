@@ -39,7 +39,7 @@
     "@types/jwk-to-pem": "^2.0.3",
     "@types/node": "^25.1.0",
     "@vitest/coverage-v8": "^3.2.4",
-    "typescript": "^5.8.3",
+    "typescript": "^7.0.2",
     "vitest": "^3.2.4"
   },
   "dependencies": {
